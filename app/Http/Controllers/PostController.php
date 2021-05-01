@@ -31,19 +31,18 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StorePostRequest $request)
     {
-       
         Post::create(
             [
-                "user_id"=>Auth()->id(),
-                "post_body"=>encrypt_string($request->post_body)
+                "user_id" => auth()->id(),
+                "post_body" => encrypt_string($request->post_body)
             ]
         );
-        return redirect()->route('home');
+        return redirect()->back();
     }
 
     /**
