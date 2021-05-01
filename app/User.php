@@ -36,7 +36,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
 
+        self::creating(function($model){
+            $model->name=encrypt_string($model->name);
+            $model->email=encrypt_string($model->email);
+        });
+    }
     public function posts()
     {
         return $this->hasMany(Post::class);
