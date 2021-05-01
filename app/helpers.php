@@ -1,4 +1,8 @@
 <?php
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 function encrypt_string($string, $key = 5)
 {
@@ -23,4 +27,19 @@ function decrypt_string($string, $key = 5)
         $result .= $char;
     }
     return $result;
+}
+
+if(!function_exists('storeFile')){
+    function storeFile($file,$folderName='Page')
+    {
+        if (!Storage::disk('public')->exists($folderName)) {
+            Storage::disk('public')->makeDirectory($folderName);
+        }
+        
+        $currentDate = Carbon::now()->toDateString();
+        $filename = $currentDate . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
+        $filemedia = File::get($file);
+        Storage::disk('public')->put($folderName . '/' . $filename, $filemedia);
+        return asset(Storage::url($folderName . '/' . $filename));
+    }
 }

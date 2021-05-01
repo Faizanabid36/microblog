@@ -1,7 +1,55 @@
 @extends('layouts.main')
 
 @section('content')
-<section>
+    <section>
+		<div class="feature-photo">
+			<figure><img src="{{asset('assets/images/resources/timeline-1.jpg')}}" alt=""></figure>
+			<div class="add-btn">
+				
+			</div>
+			<form class="edit-phto">
+				<i class="fa fa-camera-retro"></i>
+				<label class="fileContainer">
+					Edit Cover Photo
+				<input type="file"/>
+				</label>
+			</form>
+			<div class="container-fluid">
+				<div class="row merged">
+					<div class="col-lg-2 col-sm-3">
+						<div class="user-avatar">
+							<figure style="height:250px">
+								<img src="{{auth()->user()->avatar??asset('assets/images/avatar.png')}}"  alt="">
+								<form id="dp-form" action="{{route('profile.changeDP')}}" enctype="multipart/form-data" method="post"  class="edit-phto">
+								@csrf	
+                                <i class="fa fa-camera-retro"></i>
+									<label class="fileContainer">
+										Edit Display Photo
+										<input id="change-dp" name="avatar" type="file"/>
+									</label>
+                                    
+								</form>
+							</figure>
+						</div>
+					</div>
+					<div class="col-lg-10 col-sm-9">
+						<div class="timeline-info">
+							<ul>
+								<li class="admin-name">
+								  <h5>{{auth()->user()->name}}</h5>
+								  
+								</li>
+								<li>
+									<a class="" href="time-line.html" title="" data-ripple="">time line</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section><!-- top area -->
+	<section>
 		<div class="gap gray-bg">
 			<div class="container-fluid">
 				<div class="row">
@@ -10,7 +58,7 @@
 							<div class="col-lg-3">
 								<aside class="sidebar static">
 									<div class="widget">
-										<h4 class="widget-title">Content</h4>
+										<h4 class="widget-title">Shortcuts</h4>
 										
 									</div><!-- Shortcuts -->
 									
@@ -85,11 +133,11 @@
 								<div class="lodmore"><button class="btn-view btn-load-more"></button></div>
 								</div>
 							</div><!-- centerl meta -->
-							<!-- sidebar-->
 						</div>	
 					</div>
 				</div>
 			</div>
 		</div>	
 	</section>
+    
 @endsection

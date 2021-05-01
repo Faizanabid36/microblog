@@ -19,15 +19,11 @@
 	
 	<div class="responsive-header">
 		<div class="mh-head first Sticky">
-			<span class="mh-btns-left">
-				<a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
-			</span>
+			
 			<span class="mh-text">
 				<a href="" title=""><img src="{{asset('assets/images/logo2.png')}}" alt=""></a>
 			</span>
-			<span class="mh-btns-right">
-				<a class="fa fa-sliders" href="#shoppingbag"></a>
-			</span>
+			
 		</div>
 		<div class="mh-head second">
 			<form class="mh-form">
@@ -37,20 +33,15 @@
 		</div>
 		<nav id="menu" class="res-menu">
 			<ul>
-				<li><span>Home</span>	
+			<li>
+					<a href="{{route('home')}}" title="">Home</a>
+					
 				</li>
-				<li><span>Time Line</span>	
+				<li>
+					<a href="{{route('timeline')}}" title="">timeline</a>
+					
 				</li>
-				<li><span>Account Setting</span>
-				</li>
-				<li><span>forum</span>
-				</li>
-				<li><span>Our Shop</span>	
-				</li>
-				<li><span>Our Blog</span>
-				</li>
-				<li><span>Portfolio</span>
-				</li>
+				
 				
 			</ul>
 		</nav>
@@ -68,10 +59,12 @@
 					<a href="{{route('home')}}" title="">Home</a>
 					
 				</li>
+				@if(Auth()->check())
 				<li>
-					<a href="#" title="">timeline</a>
+					<a href="{{route('timeline')}}" title="">timeline</a>
 					
 				</li>
+				@endif
 				
 			</ul>
 			<ul class="setting-area">
@@ -84,7 +77,6 @@
 						</form>
 					</div>
 				</li>
-				<li><a href="newsfeed.html" title="Home" data-ripple=""><i class="ti-home"></i></a></li>
 				
 			</ul>
             
@@ -103,13 +95,11 @@
                         @else
                             <li class="nav-item dropdown">
                                 <div class="user-img">
-                                    <img src="{{asset('assets/images/resources/admin.jpg')}}" alt="">
+                                    <img src="{{auth()->user()->avatar??asset('assets/images/avatar.png')}}" alt="">
                                     <span class="status f-online"></span>
                                     <div class="user-setting">
                                         <a href="#" title=""><span class="status f-online"></span>online</a>
-                                        <a href="#" title=""><i class="ti-user"></i> view profile</a>
-                                        <a href="#" title=""><i class="ti-pencil-alt"></i>edit profile</a>
-                                        <a href="#" title=""><i class="ti-settings"></i>account setting</a>
+                                        
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                             document.getElementById('logout-form').submit();">
@@ -126,7 +116,7 @@
                             </li>
                         @endguest
             </ul>
-			<span class="ti-menu main-menu" data-ripple=""></span>
+		
 		</div>
 	</div><!-- topbar -->
 		
@@ -165,6 +155,10 @@
 </div>
 <script  src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script  src="{{asset('assets/js/script.js')}}"></script>
-
+<script>
+        $('#change-dp').on('change',function(){
+            $('#dp-form').submit();
+        })                               
+    </script>
 </body>	
 </html>

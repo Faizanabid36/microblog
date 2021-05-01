@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/timeline', 'HomeController@timeline')->middleware('auth')->name('timeline');
 Route::name('post.')->prefix('post')->group(function () {
     Route::post('/add', 'PostController@store')->name('add');
+});
+Route::name('profile.')->prefix('profile')->group(function () {
+    Route::post('/changeDP', 'profileController@changeDP')->name('changeDP');
 });
 
