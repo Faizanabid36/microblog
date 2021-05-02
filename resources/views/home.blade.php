@@ -59,7 +59,7 @@
                                                                 alt="">
                                                         </figure>
                                                         <div class="friend-name">
-                                                            <a href="time-line.html"
+                                                            <a href="{{route('timeline',$post->user->id)}}"
                                                                title="">
                                                                 <b>
                                                                     {{$post->user->name}}

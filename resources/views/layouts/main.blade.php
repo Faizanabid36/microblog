@@ -67,14 +67,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
-                   
+
                 @else
                     <li class="nav-item dropdown">
                         <div class="user-img">
                             <img src="{{auth()->user()->avatar??asset('assets/images/avatar.png')}}" alt="">
                             <span class="status f-online"></span>
                             <div class="user-setting">
-                                <a href="{{route('timeline')}}" title=""><span class="fa fa-home"></span>Timeline</a>
+                                <a href="{{route('timeline',auth()->user()->id)}}"
+                                   onclick="window.location='{{route('timeline',auth()->user()->id)}}'"
+                                >
+                                    <i class="fa fa-home"></i>Timeline</a>
                                 <a href="#" title=""><span class="fa fa-edit"></span>Edit Profile</a>
 
                                 <a href="{{ route('logout') }}"

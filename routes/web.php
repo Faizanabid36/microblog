@@ -22,9 +22,8 @@ Route::name('profile.')->prefix('profile')->group(function () {
     Route::post('/changeDP', 'profileController@changeDP')->name('changeDP');
 });
 
-
+Route::get('timeline/{user_id}', 'HomeController@timeline')->middleware('auth')->name('timeline');
 Route::middleware('auth')->group(function () {
-    Route::get('timeline', 'HomeController@timeline')->middleware('auth')->name('timeline');
     Route::name('post.')->prefix('post')->group(function () {
         Route::post('add', 'PostController@store')->name('add');
     });

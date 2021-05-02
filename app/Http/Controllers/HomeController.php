@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -33,9 +34,10 @@ class HomeController extends Controller
         return view('home', compact('posts'));
     }
 
-    public function timeline()
+    public function timeline($id)
     {
-        $posts=Post::whereUserId(Auth()->id())->orderBy('created_at', 'DESC')->get();
-        return view('timeline',compact('posts'));
+        $user = User::whereId($id)->firstOrFail();
+        $posts = Post::whereUserId($user->id)->orderBy('created_at', 'DESC')->get();
+        return view('timeline', compact('posts', 'user'));
     }
 }
