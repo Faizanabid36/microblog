@@ -53,6 +53,9 @@
                                             <div class="central-meta item">
                                                 <div class="user-post">
                                                     <div class="friend-info">
+                                                    @if(Auth()->check() && auth()->user()->id==$post->user->id)
+                                                    <p><a href="{{route('post.delete',$post->id)}}"><i class="fa fa-trash" aria-hidden="true" style="float:right"></i></a></p>
+                                                    @endif
                                                         <figure>
                                                             <img
                                                                 src="{{$post->user->avatar??asset('assets/images/avatar.png')}}"

@@ -69,6 +69,10 @@ if (!function_exists('renderPosts')) {
             $data .= '<div class="central-meta item">';
             $data .= '<div class="user-post">';
             $data .= '<div class="friend-info">';
+            if(Auth()->check() && auth()->user()->id==$post->user->id)
+            {
+                $data.=' <p><a href="'.route("post.delete",$post->id).'"><i class="fa fa-trash" aria-hidden="true" style="float:right"></i></a></p>';
+            }
             $data .= '<figure>';
             $data .= '<img src="' . $pp . '">';
             $data .= '</figure>';
