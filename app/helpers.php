@@ -3,11 +3,14 @@
 use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 
 function encrypt_string($string, $key = 5)
 {
     $result = '';
+    // Go through each character
+    // Separate each character
+    // Convert to ASCII
+    // Append result and return it with encoding for extra security
     for ($i = 0, $k = strlen($string); $i < $k; $i++) {
         $char = substr($string, $i, 1);
         $keychar = substr($key, ($i % strlen($key)) - 1, 1);
@@ -19,6 +22,11 @@ function encrypt_string($string, $key = 5)
 
 function decrypt_string($string, $key = 5)
 {
+    // Decode the string
+    // Go through each character
+    // Separate each character
+    // Convert to ASCII
+    // Append result and return it
     $result = '';
     $string = base64_decode($string);
     for ($i = 0, $k = strlen($string); $i < $k; $i++) {
@@ -33,14 +41,17 @@ function decrypt_string($string, $key = 5)
 if(!function_exists('storeFile')){
     function storeFile($file,$folderName='Page')
     {
+//        If directory does not exist, create it
         if (!Storage::disk('public')->exists($folderName)) {
             Storage::disk('public')->makeDirectory($folderName);
         }
 
+//        Assigns unique name to image/file
         $currentDate = Carbon::now()->toDateString();
         $filename = $currentDate . '-' . uniqid() . '.' . $file->getClientOriginalExtension();
         $filemedia = File::get($file);
         Storage::disk('public')->put($folderName . '/' . $filename, $filemedia);
+//        returns path to the image where it was stored
         return asset(Storage::url($folderName . '/' . $filename));
     }
 }
@@ -62,10 +73,10 @@ if (!function_exists('renderPosts')) {
             $data .= '<img src="' . $pp . '">';
             $data .= '</figure>';
             $data .= '<div class="friend-name">';
-            $data .= '<a href="time-line.html"';
-            $data .= 'title="">';
+            $data .= '<a href="' . route('timeline', $post->user->id) . '"';
+            $data .= 'title="' . decrypt_string($post->user->name) . '">';
             $data .= '<b>';
-            $data .= $name;
+            $data .= decrypt_string($name);
             $data .= '</b>';
             $data .= '</a>';
 
@@ -74,6 +85,8 @@ if (!function_exists('renderPosts')) {
             $data .= '<div class="post-meta">';
             $data .= '<div class="description">';
             $data .= '<p>';
+
+//            Decrypt the post and escape characters to show prevent sql injection
             $data .= htmlspecialchars(decrypt_string($post->post_body));
             $data .= '</p>';
             $data .= '</div>';

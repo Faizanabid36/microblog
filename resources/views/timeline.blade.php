@@ -40,7 +40,7 @@
                         <div class="timeline-info">
                             <ul>
                                 <li class="admin-name">
-                                    <h5>{{$user->name}}</h5>
+                                    <h5>{{decrypt_string($user->name)}}</h5>
                                 </li>
                             </ul>
                         </div>
@@ -103,7 +103,8 @@
                                                         </figure>
                                                         <div class="friend-name">
                                                             <ins><a href="time-line.html"
-                                                                    title="">{{($post->user->name)}}</a></ins>
+                                                                    title="">{{(decrypt_string($post->user->name))}}</a>
+                                                            </ins>
                                                             <span>published: {{$post->created_at->diffForHumans()}}</span>
                                                         </div>
                                                         <div class="post-meta">

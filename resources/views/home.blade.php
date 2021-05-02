@@ -60,9 +60,9 @@
                                                         </figure>
                                                         <div class="friend-name">
                                                             <a href="{{route('timeline',$post->user->id)}}"
-                                                               title="">
+                                                               title="{{decrypt_string($post->user->name)}}">
                                                                 <b>
-                                                                    {{$post->user->name}}
+                                                                    {{decrypt_string($post->user->name)}}
                                                                 </b>
                                                             </a>
 
