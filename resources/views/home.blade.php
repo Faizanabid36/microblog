@@ -120,7 +120,7 @@
             let page = 1;
             let SITEURL = "{{ url('/') }}";
             let should_load = true;
-            load_more(page)
+            // load_more(page)
 
 
             $(window).scroll(function () {

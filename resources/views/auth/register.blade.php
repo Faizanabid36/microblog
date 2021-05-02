@@ -1,77 +1,94 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>Blog Network</title>
+    <link rel="icon" href="{{asset('assets/js/script.js')}}" type="image/png" sizes="16x16">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+    <link rel="stylesheet" href="{{asset('assets/css/main.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/color.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+</head>
+<body>
+<!--<div class="se-pre-con"></div>-->
+<div class="theme-layout">
+    <div class="container-fluid pdng0">
+        <div class="row merged">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="land-featurearea">
+                    <div class="land-meta">
+                        <h1>My blog</h1>
+                        <p>
+                            My blog is free to use for as long as you want with two active projects.
+                        </p>
+                        <div class="friend-logo">
+                            <span><img src="{{asset('assets/images/wink.png')}}" alt=""></span>
+                        </div>
+                        <a href="#" title="" class="folow-me">Follow Us on</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="login-reg-bg">
+                    
+                    <div class="log-reg-area ">
+                        <h2 class="log-title">Register</h2>
+                        <p>
+                            Don’t use Blog Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join now</a>
+                        </p>
+                        <form method="post" action="{{ route('register') }}">
                         @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                            <div class="form-group">
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ decrypt_string(old('name')) }}" required autocomplete="name" autofocus/>
+                                <label class="control-label" for="input">Full Name</label><i class="mtrl-select"></i>
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
+                            <div class="form-group">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ decrypt_string(old('email')) }}" required autocomplete="email"/>
+                                <label class="control-label" for="input">Email</label><i class="mtrl-select"></i>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
+                            <div class="form-group">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"/>
+                                <label class="control-label" for="input">Password</label><i class="mtrl-select"></i>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <label class="control-label" for="input">Confirm Password</label><i class="mtrl-select"></i>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
-                        </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
+                            <a href="{{route('login')}}" title="" >Already have an account</a>
+                            <div class="submit-btns">
+                                <button class="mtr-btn " type="submit"><span>Register</span></button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+<script src="{{asset('assets/js/jquery.min.js')}}"></script>
+<script src="{{asset('assets/js/script.js')}}"></script>
+</body>
+
+</html>

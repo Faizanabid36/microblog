@@ -18,8 +18,10 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::name('profile.')->prefix('profile')->group(function () {
+Route::name('profile.')->prefix('profile')->middleware('auth')->group(function () {
     Route::post('/changeDP', 'profileController@changeDP')->name('changeDP');
+    Route::get('/edit/{user_id}', 'profileController@editProfile')->name('editProfile');
+    Route::post('/update', 'profileController@updateProfile')->name('updateProfile');
 });
 
 Route::get('timeline/{user_id}', 'HomeController@timeline')->middleware('auth')->name('timeline');
@@ -29,5 +31,5 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::view('test','layouts.master');
+Route::view('test','profile');
 

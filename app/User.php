@@ -40,6 +40,7 @@ class User extends Authenticatable
             $model->name=encrypt_string($model->name);
             $model->email=encrypt_string($model->email);
         });
+        
     }
     public function posts()
     {

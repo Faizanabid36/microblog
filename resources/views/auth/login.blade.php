@@ -35,7 +35,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="login-reg-bg">
-                    <div class="log-reg-area sign">
+                    <div class="log-reg-area ">
                         <h2 class="log-title">Login</h2>
                         <p>
                             Don’t use Blog Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join now</a>
@@ -72,56 +72,11 @@
 
                             <div class="submit-btns">
                                 <button class="mtr-btn signin" type="submit"><span>Login</span></button>
-                                <button class="mtr-btn signup" type="button"><span>Register</span></button>
+                                <a class="mtr-btn signup" href="{{route('register')}}"><span>Register</span></a>
                             </div>
                         </form>
                     </div>
-                    <div class="log-reg-area reg">
-                        <h2 class="log-title">Register</h2>
-                        <p>
-                            Don’t use Blog Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join now</a>
-                        </p>
-                        <form method="post" action="{{ route('register') }}">
-                        @csrf
-                            <div class="form-group">
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ decrypt_string(old('name')) }}" required autocomplete="name" autofocus/>
-                                <label class="control-label" for="input">Full Name</label><i class="mtrl-select"></i>
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ decrypt_string(old('email')) }}" required autocomplete="email"/>
-                                <label class="control-label" for="input">Email</label><i class="mtrl-select"></i>
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"/>
-                                <label class="control-label" for="input">Password</label><i class="mtrl-select"></i>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                <label class="control-label" for="input">Confirm Password</label><i class="mtrl-select"></i>
-
-                            </div>
-
-                            <a href="#" title="" class="already-have">Already have an account</a>
-                            <div class="submit-btns">
-                                <button class="mtr-btn " type="submit"><span>Register</span></button>
-                            </div>
-                        </form>
-                    </div>
+                   
                 </div>
             </div>
         </div>
