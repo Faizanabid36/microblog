@@ -78,7 +78,11 @@
                                    onclick="window.location='{{route('timeline',auth()->user()->id)}}'"
                                 >
                                     <i class="fa fa-home"></i>Timeline</a>
-                                <a href="{{route('profile.editProfile',auth()->id())}}" title=""><span class="fa fa-edit"></span>Edit Profile</a>
+                                <a
+                                    onclick="window.location='{{route('profile.editProfile',auth()->id())}}'"
+                                    href="{{route('profile.editProfile',auth()->id())}}" title=""><i class="fa fa-edit"></i>
+                                    Edit Profile
+                                </a>
 
                                 <a href="{{ route('logout') }}"
                                    onclick="event.preventDefault();

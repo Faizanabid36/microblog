@@ -24,7 +24,12 @@ Route::name('profile.')->prefix('profile')->middleware('auth')->group(function (
     Route::post('/update', 'profileController@updateProfile')->name('updateProfile');
 });
 
-Route::get('timeline/{user_id}', 'HomeController@timeline')->middleware('auth')->name('timeline');
+
+
+
+Route::get('timeline/{user_id}', 'HomeController@timeline')->name('timeline');
+
+
 Route::middleware('auth')->group(function () {
     Route::name('post.')->prefix('post')->group(function () {
         Route::post('add', 'PostController@store')->name('add');

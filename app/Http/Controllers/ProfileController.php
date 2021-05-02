@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProfileRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -15,24 +16,24 @@ class ProfileController extends Controller
         );
         return back()->withMesage('Picture changed successfully');
     }
+
     public function editProfile($user_id)
     {
-        $user=User::whereId($user_id)->first();
-        
-        return view('profile',compact('user'));
+        $user = User::whereId($user_id)->firstOrFail();
+
+        return view('profile', compact('user'));
     }
-    public function updateProfile(Request $request)
+
+    public function updateProfile(UpdateProfileRequest $request)
     {
-        $user=User::updateOrCreate(
-            [
-                'id'=>$request->user_id
-            ],
-            [
-                "name"=>encrypt_string($request->name),
-                "email"=>encrypt_string($request->email)
+        if (auth()->user()->email != encrypt_string($request->email) && !is_null(User::whereEmail(encrypt_string($request->email))->first()))
+            return back()->withErrors(['Email has already been taken']);
+
+        User::whereId(auth()->user()->id)->update([
+                "name" => encrypt_string($request->name),
+                "email" => encrypt_string($request->email)
             ]
-            
         );
-        return back();
+        return back()->withSuccess('Profile Updated');
     }
 }
