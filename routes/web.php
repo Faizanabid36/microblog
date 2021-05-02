@@ -33,6 +33,7 @@ Route::get('timeline/{user_id}', 'HomeController@timeline')->name('timeline');
 Route::middleware('auth')->group(function () {
     Route::name('post.')->prefix('post')->group(function () {
         Route::post('add', 'PostController@store')->name('add');
+        Route::get('delete/{id}', 'PostController@destroy')->name('delete');
     });
 });
 

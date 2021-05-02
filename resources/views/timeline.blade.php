@@ -7,13 +7,7 @@
             <div class="add-btn">
 
             </div>
-            <form class="edit-phto">
-                <i class="fa fa-camera-retro"></i>
-                <label class="fileContainer">
-                    Edit Cover Photo
-                    <input type="file"/>
-                </label>
-            </form>
+           
             <div class="container-fluid">
                 <div class="row merged">
                     <div class="col-lg-2 col-sm-3">
@@ -96,11 +90,16 @@
                                             <div class="central-meta item">
                                                 <div class="user-post">
                                                     <div class="friend-info">
+                                                    @if(Auth()->check() && auth()->user()->id==$post->user->id)
+                                                    <p><a href="{{route('post.delete',$post->id)}}"><i class="fa fa-trash" aria-hidden="true" style="float:right"></i></a></p>
+                                                   @endif
                                                         <figure>
                                                             <img
                                                                 src="{{$post->user->avatar??asset('assets/images/avatar.png')}}"
                                                                 alt="">
+                                                                
                                                         </figure>
+                                                     
                                                         <div class="friend-name">
                                                             <ins><a href="time-line.html"
                                                                     title="">{{(decrypt_string($post->user->name))}}</a>
