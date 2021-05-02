@@ -43,7 +43,7 @@
 
     <div class="topbar stick">
         <div class="logo">
-            <a title="" href="#"><img src="{{asset('assets/images/logo.png')}}" alt=""></a>
+            <a title="" href="#"><img src="{{asset('assets/images/logo.png')}}" width="60"></a>
         </div>
 
         <div class="top-area">
@@ -110,7 +110,7 @@
                     <div class="widget">
                         <div class="foot-logo">
                             <div class="logo">
-                                <a href="#" title=""><img src="{{asset('assets/images/logo.png')}}" alt=""></a>
+                                <a href="#" title=""><img src="{{asset('assets/images/logo.png')}}" width="60"></a>
                             </div>
                         </div>
                         <ul class="location">
