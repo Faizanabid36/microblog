@@ -4,6 +4,27 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
+
+function custom_hash($str, $size = 30, $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$.@,:-_+%')
+{
+    $hash_array = array();
+    $hash = '';
+    $size = random_int(25, 40);
+    for ($i = 0; $i < $size; $i++) {
+        $hash_array[$i] = 0;
+    }
+    for ($s = 0; $s < strlen($str); $s++) {
+        for ($i = 0; $i < $size; $i++) {
+            $hash_array[$i] = ($hash_array[$i] + ord($str[$s]) + $i + $s + $size) % strlen($characters);
+        }
+    }
+    for ($i = 0; $i < $size; $i++) {
+        $hash .= $characters[$hash_array[$i]];
+    }
+    return $hash;
+}
+
+
 function encrypt_string($string, $key = 5)
 {
     $result = '';
