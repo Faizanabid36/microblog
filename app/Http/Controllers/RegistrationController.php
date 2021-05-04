@@ -22,7 +22,7 @@ class RegistrationController extends Controller
 
         $user = User::create([
             // remove all the white spaces from name file, encrypt it and store it in database
-            'name' => trim($request->name),
+            'name' => encrypt_string(trim($request->name)),
             // convert email to lower case before storing in database, encrypt it and store it
             'email' => encrypt_string(strtolower($request->email)),
             // use the custom hash method to hash the password, see helpers.php

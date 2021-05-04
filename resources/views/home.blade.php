@@ -85,6 +85,7 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                        
                                     @endif
                                 </div>
                             </div><!-- centerl meta -->

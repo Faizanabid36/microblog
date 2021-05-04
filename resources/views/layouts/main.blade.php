@@ -44,9 +44,6 @@
         </div>
 
         <div class="top-area">
-            
-
-
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest
