@@ -38,37 +38,39 @@
                     <div class="log-reg-area ">
                         <h2 class="log-title">Login</h2>
                         <p>
-                            Don’t use Blog Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join now</a>
+                            Don’t use Blog Yet? <a href="#" title="">Take the tour</a> or <a href="#" title="">Join
+                                now</a>
                         </p>
                         <form method="post" action="{{ route('login') }}">
-                        @csrf
+                            @csrf
                             <div class="form-group">
-                                <input type="text" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ decrypt_string(old('email')) }}" required autocomplete="email" autofocus/>
+                                <input type="text" id="email" type="email"
+                                       class="form-control @error('email') is-invalid @enderror" name="email"
+                                       value="{{ decrypt_string(old('email')) }}" required autocomplete="email"
+                                       autofocus/>
                                 <label class="control-label" for="email">Email</label><i class="mtrl-select"></i>
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                @if(session()->has('errors'))
+                                    <strong class="text-danger"
+                                            style="font-size: 12px">
+                                        {{ session()->get('errors')->first() }}
+                                    </strong>
+                                @endif
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"/>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                       name="password" required autocomplete="current-password"/>
                                 <label class="control-label" for="password">Password</label><i class="mtrl-select"></i>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" checked="checked"/><i class="check-box"></i>Always Remember Me.
+                                    <input type="checkbox" checked="checked"/><i class="check-box"></i>Always Remember
+                                    Me.
                                 </label>
                             </div>
-                            @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" title="" class="forgot-pwd">Forgot Password?</a>
+                            {{--                            @if (Route::has('password.request'))--}}
+                            {{--                            <a href="{{ route('password.request') }}" title="" class="forgot-pwd">Forgot Password?</a>--}}
 
-                            @endif
+                            {{--                            @endif--}}
 
                             <div class="submit-btns">
                                 <button class="mtr-btn signin" type="submit"><span>Login</span></button>
@@ -76,7 +78,7 @@
                             </div>
                         </form>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
