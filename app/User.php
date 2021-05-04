@@ -37,10 +37,10 @@ class User extends Authenticatable
         parent::boot();
 
         self::creating(function($model){
-            $model->name=encrypt_string($model->name);
-            $model->email=encrypt_string($model->email);
+//            $model->name=encrypt_string($model->name);
+//            $model->email=encrypt_string($model->email);
         });
-        
+
     }
     public function posts()
     {
