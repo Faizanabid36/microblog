@@ -21,15 +21,12 @@
         <div class="mh-head first Sticky">
 
 			<span class="mh-text">
-				<a href="" title=""><img src="{{asset('assets/images/logo2.png')}}" alt=""></a>
+				<a href="{{route('home')}}" title=""><img src="{{asset('assets/images/logo2.png')}}" alt=""></a>
 			</span>
 
         </div>
         <div class="mh-head second">
-            <form class="mh-form">
-                <input placeholder="search"/>
-                <a href="#/" class="fa fa-search"></a>
-            </form>
+           
         </div>
         <nav id="menu" class="res-menu">
             <ul>
@@ -43,22 +40,11 @@
 
     <div class="topbar stick">
         <div class="logo">
-            <a title="" href="#"><img src="{{asset('assets/images/logo.png')}}" width="60"></a>
+            <a title="" href="{{route('home')}}"><img src="{{asset('assets/images/logo.png')}}" width="60"></a>
         </div>
 
         <div class="top-area">
-            <ul class="setting-area">
-                <li>
-                    <a href="#" title="Home" data-ripple=""><i class="ti-search"></i></a>
-                    <div class="searched">
-                        <form method="post" class="form-search">
-                            <input type="text" placeholder="Search Friend">
-                            <button data-ripple><i class="ti-search"></i></button>
-                        </form>
-                    </div>
-                </li>
-
-            </ul>
+            
 
 
             <ul class="navbar-nav ml-auto">
@@ -110,7 +96,7 @@
                     <div class="widget">
                         <div class="foot-logo">
                             <div class="logo">
-                                <a href="#" title=""><img src="{{asset('assets/images/logo.png')}}" width="60"></a>
+                                <a href="{{route('home')}}" title=""><img src="{{asset('assets/images/logo.png')}}" width="60"></a>
                             </div>
                         </div>
                         <ul class="location">

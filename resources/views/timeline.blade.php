@@ -52,7 +52,7 @@
                             <div class="col-lg-3">
                                 <aside class="sidebar static">
                                     <div class="widget">
-                                        <h4 class="widget-title">Shortcuts</h4>
+                                        <h4 class="widget-title">Content</h4>
 
                                     </div><!-- Shortcuts -->
 
