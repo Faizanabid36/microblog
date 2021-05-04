@@ -19,7 +19,6 @@ class LoginController extends Controller
 
         // Check if there is user in the database with the similar email.
         $user = User::where('email', encrypt_string($request->email))->first();
-        dd(decrypt_string('omqWmqdqlp+hpZqaooydp5mPrp6hpWudjmqeoKSccnI='));
 
         // If no user exists, we send it back with validation message
         if (is_null($user))
