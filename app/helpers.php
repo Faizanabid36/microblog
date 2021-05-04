@@ -9,7 +9,7 @@ function custom_hash($str, $size = 30, $characters = '0123456789abcdefghijklmnop
 {
     $hash_array = array();
     $hash = '';
-    $size = random_int(25, 40);
+    $size = $size + strlen($str);
     for ($i = 0; $i < $size; $i++) {
         $hash_array[$i] = 0;
     }
