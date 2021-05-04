@@ -20,22 +20,15 @@ class LoginController extends Controller
         // Check if there is user in the database with the similar email.
         $user = User::where('email', encrypt_string($request->email))->first();
 
-        // If no user exists, we send it back with validation message
-        if (is_null($user))
-            return back()->withErrors(['User does not exist with given email']);
+        // If no user exists or has entered incorrect password, we send it back with validation message
+        if (is_null($user) || custom_hash($request->password) != $user->password)
+            return back()->withErrors(['These Credentials do not match our records']);
 
+        // The user with this email exists, now we need to verify password
         else {
-            // The user with this email exists, now we need to verify password
-            // check it using our own made hash function
-            if (custom_hash($request->password) != $user->password) {
-
-                // send it back with validation message because the passwords didn't match
-                return back()->withErrors(['Incorrect Password entered']);
-            } else {
-                // When both the password and the email matches, we allow user to login and take him to home
-                auth()->login($user);
-                return redirect()->route('home');
-            }
+            // When both the password and the email matches, we allow user to login and take him to home
+            auth()->login($user);
+            return redirect()->route('home');
         }
     }
 
