@@ -5,22 +5,31 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 
+
+// this is the custom hash function to store password, $str contains the data sent from password field
+// size tells how long should the hashed password be, characters contains all the possible combinations generated.
 function custom_hash($str, $size = 30, $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$.@,:-_+%')
 {
     $hash_array = array();
     $hash = '';
     $size = $size + strlen($str);
+    // creating a simple hash array with keys as 0
     for ($i = 0; $i < $size; $i++) {
         $hash_array[$i] = 0;
     }
+
+    //replacing each 0 key with unique character with some logic
     for ($s = 0; $s < strlen($str); $s++) {
         for ($i = 0; $i < $size; $i++) {
             $hash_array[$i] = ($hash_array[$i] + ord($str[$s]) + $i + $s + $size) % strlen($characters);
         }
     }
+    // combine all the characters
     for ($i = 0; $i < $size; $i++) {
         $hash .= $characters[$hash_array[$i]];
     }
+
+    // return the obtained the hash
     return $hash;
 }
 

@@ -10,7 +10,7 @@ class RegistrationController extends Controller
     public function register(Request $request)
     {
         //Encrypt the email
-        $request->merge(['email'=>encrypt_string($request->email)]);
+        $request->merge(['email' => encrypt_string(strtolower($request->email))]);
 
 
         // Checks if the email or password field is not empty and email should be proper and valid means
@@ -28,7 +28,7 @@ class RegistrationController extends Controller
             // remove all the white spaces from name file, encrypt it and store it in database
             'name' => encrypt_string(trim($request->name)),
             // convert email to lower case before storing in database, and store the encrypted email
-            'email' => (strtolower($request->email)),
+            'email' => $request->email,
             // use the custom hash method to hash the password, see helpers.php
             'password' => custom_hash($request->password),
         ]);

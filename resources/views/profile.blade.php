@@ -7,7 +7,7 @@
             <div class="add-btn">
 
             </div>
-           
+
             <div class="container-fluid">
                 <div class="row merged">
                     <div class="col-lg-2 col-sm-3">
@@ -75,9 +75,10 @@
                                                    required="required"/>
                                             <label class="control-label">Name</label><i class="mtrl-select"></i>
                                         </div>
-
                                         <div class="form-group half">
-                                            <input type="text" name="email" value="{{decrypt_string($user->email)}}"
+                                            <input type="email" name="email"
+                                                   placeholder="{{decrypt_string($user->email)}}"
+                                                   value="{{decrypt_string($user->email)}}"
                                                    required="required"/>
                                             <label class="control-label">Email</label><i class="mtrl-select"></i>
                                         </div>
@@ -89,7 +90,7 @@
                                 </div>
                             </div>
                         </div><!-- centerl meta -->
-                      
+
                     </div>
                 </div>
             </div>
