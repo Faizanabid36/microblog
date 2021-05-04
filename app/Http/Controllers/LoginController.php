@@ -33,9 +33,7 @@ class LoginController extends Controller
                 return back()->withErrors(['Incorrect Password entered']);
             } else {
                 // When both the password and the email matches, we allow user to login and take him to home
-                if (!Auth::attempt($request->only(['email', 'password']))) {
-                    return redirect()->route('home');
-                }
+                auth()->login($user);
             }
         }
     }

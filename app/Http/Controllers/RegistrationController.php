@@ -9,6 +9,10 @@ class RegistrationController extends Controller
 {
     public function register(Request $request)
     {
+        //Encrypt the email
+        $request->merge(['email'=>encrypt_string($request->email)]);
+
+
         // Checks if the email or password field is not empty and email should be proper and valid means
         //  it should contain @ and . symbol
         // name should not be empty and should not be greater than 255 characters along with email
@@ -16,15 +20,15 @@ class RegistrationController extends Controller
         // password min length should be 8 and should match with confirmation password field
         $request->validate([
             'name' => 'required|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed'
         ]);
 
         $user = User::create([
             // remove all the white spaces from name file, encrypt it and store it in database
             'name' => encrypt_string(trim($request->name)),
-            // convert email to lower case before storing in database, encrypt it and store it
-            'email' => encrypt_string(strtolower($request->email)),
+            // convert email to lower case before storing in database, and store the encrypted email
+            'email' => (strtolower($request->email)),
             // use the custom hash method to hash the password, see helpers.php
             'password' => custom_hash($request->password),
         ]);
