@@ -41,5 +41,10 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::view('test','profile');
+// Route::get('test',function(){
+
+//     session()->put('key', User::whereId(1)->first());
+//     dd(session('key')->created_at->diffForHumans());
+    
+// });
 
