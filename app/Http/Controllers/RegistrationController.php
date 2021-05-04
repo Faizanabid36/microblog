@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RegistrationController extends Controller
 {
@@ -14,10 +15,10 @@ class RegistrationController extends Controller
         // name should not be empty and should not be greater than 255 characters along with email
         // also check that emaIl should be uniqe, if another uses this email, display error message
         // password min length should be 8 and should match with confirmation password field
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string', 'min:8', 'confirmed'
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         $user = User::create([
