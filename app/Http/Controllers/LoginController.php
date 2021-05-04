@@ -34,6 +34,7 @@ class LoginController extends Controller
             } else {
                 // When both the password and the email matches, we allow user to login and take him to home
                 auth()->login($user);
+                return redirect()->route('home');
             }
         }
     }
