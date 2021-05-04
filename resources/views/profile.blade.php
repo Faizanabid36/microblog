@@ -83,7 +83,7 @@
                                             <label class="control-label">Email</label><i class="mtrl-select"></i>
                                         </div>
                                         <div class="submit-btns">
-                                            <button type="button" class="mtr-btn"><span>Cancel</span></button>
+                                            <!-- <button type="button" class="mtr-btn"><span>Cancel</span></button> -->
                                             <button type="submit" class="mtr-btn"><span>Update</span></button>
                                         </div>
                                     </form>
