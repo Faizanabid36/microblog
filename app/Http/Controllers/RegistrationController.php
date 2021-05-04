@@ -28,7 +28,7 @@ class RegistrationController extends Controller
             // remove all the white spaces from name file, encrypt it and store it in database
             'name' => encrypt_string(trim($request->name)),
             // convert email to lower case before storing in database, and store the encrypted email
-            'email' => (strtolower($request->email)),
+            'email' => encrypt_string($request->email),
             // use the custom hash method to hash the password, see helpers.php
             'password' => custom_hash($request->password),
         ]);

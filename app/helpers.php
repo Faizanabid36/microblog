@@ -56,6 +56,7 @@ function decrypt_string($string, $key = 5)
         $char = chr(ord($char) - ord($keychar));
         $result .= $char;
     }
+    
     return $result;
 }
 
